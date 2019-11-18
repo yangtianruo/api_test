@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "8a09b9d7-8dd0-a08c-eba1-87ebb48730e6",
+		"name": "首页",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ICY-首页",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c86a2496-96e1-4a9d-8bfd-650c90bac2c8",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\",data.token);",
+							"",
+							"// tests[\"status code is 200\"] = responseCode.code == 200;",
+							"",
+							"//判断状态是否包含200，202",
+							"// pm.test(\"Successful POST request\", function () {",
+							"//     pm.expect(pm.response.code).to.be.oneOf([200,202]);",
+							"// });",
+							"",
+							"// //判断状态码描述中是否包含result，通常不使用",
+							"// pm.test(\"Status code name has string\", function () {",
+							"//     pm.response.to.have.status(\"result\");",
+							"// });",
+							"",
+							"// 判断返回结果中，是否包括该字符串",
+							"// pm.test(\"判断Response中是否包含bannerId\", function () {",
+							"//     pm.expect(pm.response.text()).to.include(\"bannerId\");",
+							"// });",
+							"",
+							"",
+							"pm.test(\"从Json中获取某个字段的值，是否与预期的字段值相等\", function () {",
+							"    var jsonData = pm.response.json(); //将json字符串类型转化为js对象",
+							"    console.log(jsonData);//打印日志",
+							"    //获取JSON中hasLottery字段值是否等于0，注意字段结果是字符串类型时，需要用单引号引起来",
+							"    pm.expect(jsonData.data.hasLottery).to.eql(0);",
+							"});",
+							"",
+							"// 响应结果与字符串是否全部匹配预期的字符串；预期结果与实际结果要完全匹配",
+							"// pm.test(\"Body is correct\", function () {",
+							"//     pm.response.to.have.body(\"response_body_string\");",
+							"// });",
+							"",
+							"// 响应时间是否小于X秒",
+							"pm.test(\"响应时间是否小于2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"// header使用的字符集类型",
+							"pm.test(\"header使用的字符集类型\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"var jsonObject = xml2Json(responseBody);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "method",
+							"value": "icy.getHome",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://icy.design/icym.php?method=icy.getHome&appId=3&page=1&pageSize=5",
+					"protocol": "https",
+					"host": [
+						"icy",
+						"design"
+					],
+					"path": [
+						"icym.php"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "icy.getHome"
+						},
+						{
+							"key": "appId",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
